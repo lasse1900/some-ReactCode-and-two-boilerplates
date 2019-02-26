@@ -96,7 +96,7 @@ class IndecisionApp extends React.Component {
 
 const Header = (props) => {
     return (
-        <div>
+        <div> 
             <h1>{props.title}</h1>
             {props.subTitle &&  <h2>{props.subTitle}</h2>}
         </div>
@@ -104,7 +104,7 @@ const Header = (props) => {
 }
 
 Header.defaultProps = {
-    title: 'Indecision'
+    title: 'Indecision App'
 }
 
 const Action = (props) => {
