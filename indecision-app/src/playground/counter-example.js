@@ -5,8 +5,26 @@
         this.handleMinusOne = this.handleMinusOne.bind(this);
         this.handleReset = this.handleReset.bind(this);
         this.state = {
-            count: props.count
+            count: 0 //props.count
         };
+    }
+
+    componentDidMount() {
+        try{
+            const stringCount = localStorage.getItem('count');
+            const count = JSON.parse(stringCount);
+    
+            if(!isNaN(count)) {
+                this.setState(() => ({count}));
+            }
+        } catch (e) {
+            // Do nothing at all
+        }
+    }
+    componentDidUpdate(prevProps, prevState) {
+        if (prevState.count !== this.state.count) {
+            localStorage.setItem('count', this.state.count);
+        }
     }
     handleAddOne(){
         // this.state.count = this.state.count + 1;
@@ -44,9 +62,9 @@
     }
 }
 
-Counter.defaultProps = {
-    count: 0
-}
+// Counter.defaultProps = {
+//     count: 0
+// }
 
 ReactDOM.render(<Counter count={10}/>, document.getElementById('app'));
 
