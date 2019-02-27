@@ -9,26 +9,6 @@ export default class IndecisionApp extends React.Component {
     state = {
         options: []
     }
-    // constructor(props){
-    //     super(props);
-    //     this.handleDeleteOptions = this.handleDeleteOptions.bind(this);
-    //     this.handlePick = this.handlePick.bind(this);
-    //     this.handleAddOption = this.handleAddOption.bind(this);
-    //     this.handleDeleteOption = this.handleDeleteOption.bind(this);
-    // }
-
-    componentDidMount = (e) => {
-        try{
-            const json = localStorage.getItem('options');
-            const options = JSON.parse(json);
-    
-            if(options) {
-                this.setState(() => ({options}));
-            }
-        } catch (e) {
-            // Do nothing at all
-        }
-    }
 
     handleDeleteOptions = (e) => {
         this.setState(() => ({
@@ -64,6 +44,19 @@ export default class IndecisionApp extends React.Component {
             options: prevState.options.concat(option)
         }));
 
+    }
+
+    componentDidMount() {
+        try{
+            const json = localStorage.getItem('options');
+            const options = JSON.parse(json);
+    
+            if(options) {
+                this.setState(() => ({options}));
+            }
+        } catch (e) {
+            // Do nothing at all
+        }
     }
 
     componentDidUpdate(prevProps, prevState) {
