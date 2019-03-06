@@ -12,9 +12,9 @@ import './styles/styles.scss';
 
 const store = configureStore();
 
-store.dispatch(addExpense({ description: 'Water bill', amount: 100, createdAt: 4500 }));
-store.dispatch(addExpense({ description: 'Gas bill', amount: 300, createdAt: 1000 }));
-store.dispatch(addExpense({ description: 'Rent', amount: 500, createdAt: 500 }));
+store.dispatch(addExpense({ description: 'Water bill', amount: 100, createdAt: 1551885842591 }));
+store.dispatch(addExpense({ description: 'Gas bill', amount: 300, createdAt: 1551885842250 }));
+store.dispatch(addExpense({ description: 'Rent', amount: 500, createdAt: 1551885812591 }));
 // store.dispatch(setTextFilter('water'));
 
 // setTimeout(() => {
