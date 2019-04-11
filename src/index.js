@@ -1,12 +1,18 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import * as serviceWorker from './serviceWorker';
 
 const NoteApp = () => {
-  const [notes, setNotes] = useState([]);
+  const notesData = JSON.parse(localStorage.getItem('notes'));
+  const [notes, setNotes] = useState(notesData || []);
   const [title, setTitle] = useState('');
   const [body, setBody] = useState('');
 
+
+  useEffect(() => {
+    const json = JSON.stringify(notes);
+    localStorage.setItem('notes', json);
+  });
 
   const addNote = (e) => {
     e.preventDefault();
@@ -39,39 +45,22 @@ const NoteApp = () => {
       <form onSubmit={addNote}>
         <input value={title} onChange={(e) => setTitle(e.target.value)} />
         <textarea value={body} onChange={(e) => setBody(e.target.value)}></textarea>
-        {/*<textarea value={body} onChange={(e) => setBody(e.target.value)}></textarea>*/}
         <button>add note</button>
+        <br></br>
       </form>
+      {/*<button onClick={() => readNotes()}>Read notes</button> */}
     </div>
   )
 }
 
-
-
-// This doesn't work  !!!!!!!
-
-// const App = (props) => {
-//   // const [count, setCount] = useState(props.count);
-//   // const [text, setText] = useState('');
-//   const [state, setState] = useState({
-//     count: props.count,
-//     text: ''
-//   })
-
-//   return (
-//     <div>
-//       <p>The current {state.text || 'count'}  is {state.count}</p>
-//       <button onClick={ () => setState({count: state.count + 1})}>+1</button>
-//       <button onClick={ () => setState({count: props.count})}>reset</button>
-//       <button onClick={ () => setState({count: state.count -1 })}>-1</button>
-//       <input value={state.text} onChange={ (e) => setState({text: e.target.value})}/>
-//     </div>
-//   )
-// }
-
 // const App = (props) => {
 //   const [count, setCount] = useState(props.count);
 //   const [text, setText] = useState('');
+
+//   useEffect(() => {
+//     console.log('use effect ran');
+//     document.title = count;
+//   });
 
 //   return (
 //     <div>
